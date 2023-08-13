@@ -1,0 +1,1 @@
+from .generic_service_interface import GenericServiceInterface

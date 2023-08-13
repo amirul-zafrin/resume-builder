@@ -1,0 +1,1 @@
+from .generic_repository_interface import GenericRepositoryInterface
