@@ -1,12 +1,12 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr
+from pydantic import EmailStr, constr
 
-from .core import BasePatchModel, BasePostModel
+from .core import BasePatchModel, BasePostModel, BaseResponseModel
 
 
-class UserResponseModel(BaseModel):
+class UserResponseModel(BaseResponseModel):
     """Response data for '/user' endpoint"""
 
     user_id: int
@@ -19,8 +19,8 @@ class UserResponseModel(BaseModel):
 class UserPostModel(BasePostModel):
     """Input data for user creation"""
 
-    username: EmailStr
-    password: str
+    user_name: EmailStr
+    password: constr(min_length=7)
 
 
 class UserPatchModel(BasePatchModel):

@@ -1,1 +1,1 @@
-from .base_model import BasePatchModel, BasePostModel
+from .base_model import BasePatchModel, BasePostModel, BaseResponseModel

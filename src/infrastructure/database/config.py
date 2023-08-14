@@ -1,9 +1,11 @@
-from sqlalchemy import create_engine, URL
+from sqlalchemy import URL, create_engine
 from sqlalchemy.orm import sessionmaker
 
+from settings import database, drivername
+
 conn_str = URL.create(
-    drivername="sqlite",
-    database="resume_db.db",
+    drivername=drivername,
+    database=database,
 )
 engine = create_engine(url=conn_str)
 SessionFactory = sessionmaker(bind=engine)
