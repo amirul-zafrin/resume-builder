@@ -32,19 +32,35 @@ class UserService(UserServiceInterface):
         self,
         data: UserPostModel,
     ) -> User:
-        return super().create(data)
+        dict_data = data.model_dump()
+        created_user = self.repository.create(data=dict_data)
+        return created_user
 
     def update(
         self,
         id: int,
         data: UserPatchModel,
     ) -> User:
-        # target_user = self.get_by_id(id=id)
-        # self.repository.update()
-        ...
+        target_user = self.get_by_id(id=id)
+        dict_data = data.model_dump(exclude_unset=True)
+
+        if not dict_data:
+            return target_user
+
+        updated_user = self.repository.update(
+            id=id,
+            data=dict_data,
+            target=target_user,
+        )
+        return updated_user
 
     def delete(
         self,
         id: int,
     ) -> User:
-        return super().delete(id)
+        target_user = self.get_by_id(id=id)
+        delete_status = self.repository.delete(
+            id=id,
+            target=target_user,
+        )
+        return delete_status

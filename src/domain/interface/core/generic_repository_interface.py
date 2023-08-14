@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Generic, TypeVar
+from typing import Generic, Optional, TypeVar
 
 Entity = TypeVar("Entity")
 
@@ -17,11 +17,11 @@ class GenericRepositoryInterface(
     """
 
     @abstractmethod
-    def get_all(self) -> list[Entity]:
+    def get_all(self) -> list[Optional[Entity]]:
         ...
 
     @abstractmethod
-    def get_by_id(self, id: int) -> Entity:
+    def get_by_id(self, id: int) -> Optional[Entity]:
         ...
 
     @abstractmethod
@@ -29,9 +29,9 @@ class GenericRepositoryInterface(
         ...
 
     @abstractmethod
-    def update(self, id: int, data: dict) -> Entity:
+    def update(self, id: int, data: dict, target: Entity) -> Entity:
         ...
 
     @abstractmethod
-    def delete(self, id: int) -> bool:
+    def delete(self, id: int, target: Entity) -> bool:
         ...

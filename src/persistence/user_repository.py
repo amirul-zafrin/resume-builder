@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
@@ -14,14 +16,11 @@ class UserRepository(UserRepostoryInterface):
         super().__init__()
         self.session = session
 
-    def get_all(self) -> list[User]:
+    def get_all(self) -> list[Optional[User]]:
         users = self.session.query(User).all()
         return users
 
-    def get_by_id(
-        self,
-        id: int,
-    ) -> User:
+    def get_by_id(self, id: int) -> Optional[User]:
         user = self.session.query(User).get(id)
         return user
 
@@ -29,17 +28,29 @@ class UserRepository(UserRepostoryInterface):
         self,
         data: dict,
     ) -> User:
-        return super().create(data)
+        new_user = User(**data)
+        self.session.add(new_user)
+        self.session.commit()
+        self.session.refresh(new_user)
+        return new_user
 
     def update(
         self,
         id: int,
         data: dict,
+        target: User,
     ) -> User:
-        return super().update(id, data)
+        for key, val in data.items():
+            setattr(target, key, val)
+        self.session.commit()
+        self.session.refresh(target)
+        return target
 
     def delete(
         self,
         id: int,
+        target: User,
     ) -> bool:
-        return super().delete(id)
+        self.session.delete(target)
+        self.session.commit()
+        return True
