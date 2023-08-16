@@ -24,6 +24,10 @@ class UserRepository(UserRepostoryInterface):
         user = self.session.query(User).get(id)
         return user
 
+    def get_by_username(self, username: str) -> Optional[User]:
+        user = self.session.query(User).filter(User.username == username).scalar()
+        return user
+
     def create(
         self,
         data: dict,

@@ -11,7 +11,7 @@ class UserResponseModel(BaseResponseModel):
 
     user_id: int
     username: EmailStr
-    password: str
+    # password: str
     user_date_created: datetime
     user_date_last_modified: datetime
 
@@ -19,7 +19,7 @@ class UserResponseModel(BaseResponseModel):
 class UserPostModel(BasePostModel):
     """Input data for user creation"""
 
-    user_name: EmailStr
+    username: EmailStr
     password: constr(min_length=7)
 
 
