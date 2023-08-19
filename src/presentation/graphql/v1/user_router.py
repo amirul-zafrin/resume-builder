@@ -1,25 +1,16 @@
 import strawberry
-
+from fastapi import Depends
 from strawberry.fastapi import GraphQLRouter
 from strawberry.types import Info
+
+from application.model.strawberry import User
 from application.service import UserService
-from fastapi import Depends
-from datetime import datetime
 
 
 async def get_context(
     service: UserService = Depends(),
 ):
     return {UserService: service}
-
-
-@strawberry.type
-class User:
-    user_id: int
-    username: str
-    password: str
-    user_date_created: datetime
-    user_date_last_modified: datetime
 
 
 @strawberry.type
@@ -36,4 +27,4 @@ class QueryUser:
 
 
 schema = strawberry.Schema(QueryUser)
-graphql_router = GraphQLRouter(schema, context_getter=get_context)
+graphql_user_router = GraphQLRouter(schema, context_getter=get_context)

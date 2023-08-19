@@ -1,1 +1,1 @@
-from .user_router import graphql_router
+from .router import graphql_router

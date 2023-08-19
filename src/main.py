@@ -1,9 +1,8 @@
 from fastapi import FastAPI
 
 from application.exception import exception_handlers
-from presentation import api_router
+from presentation import api_router, graphql_router
 from utils import startup_event
-from presentation.graphql import graphql_router
 
 app = FastAPI(
     title="Resume Builder",
@@ -13,4 +12,4 @@ app = FastAPI(
 )
 
 app.include_router(api_router)
-app.include_router(graphql_router, prefix="/hahah")
+app.include_router(graphql_router)
