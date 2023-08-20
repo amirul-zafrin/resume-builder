@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from application.service import AuthService
-from application.model import TokenModel, UserResponseModel, UserPostModel
+from application.model.pydantic import TokenModel, UserResponseModel, UserPostModel
 
 auth_router = APIRouter(
     prefix="/auth",

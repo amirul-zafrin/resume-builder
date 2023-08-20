@@ -10,7 +10,7 @@ from persistence import UserRepository
 from settings import expiration_minute, jwt_hash_algo, secret_key
 
 from ..exception import EntryNotFoundError, UnauthorizedError
-from ..model import TokenModel, TokenData, UserPatchModel, UserPostModel
+from ..model.pydantic import TokenModel, TokenData, UserPatchModel, UserPostModel
 from .auth_service_interface import AuthServiceInterface
 
 

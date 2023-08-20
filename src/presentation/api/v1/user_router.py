@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Path
 
-from application.model import UserPatchModel, UserPostModel, UserResponseModel
+from application.model.pydantic import UserPatchModel, UserPostModel, UserResponseModel
 from application.service import UserService
 
 user_router = APIRouter(

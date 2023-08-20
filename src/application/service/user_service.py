@@ -1,6 +1,6 @@
 from fastapi import Depends
 
-from application.model.user_model import UserPatchModel, UserPostModel
+from ..model.pydantic import UserPatchModel, UserPostModel
 from domain.entity.user import User
 from persistence import UserRepository
 

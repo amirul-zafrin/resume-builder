@@ -1,6 +1,6 @@
 from domain.entity import User
 
-from ..model import UserPatchModel, UserPostModel, UserResponseModel
+from ..model.pydantic import UserPatchModel, UserPostModel, UserResponseModel
 from .core import GenericServiceInterface
 
 

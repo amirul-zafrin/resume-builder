@@ -4,7 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from domain.entity import User
 
-from ..model import TokenModel, UserPatchModel, UserPostModel
+from ..model.pydantic import TokenModel, UserPatchModel, UserPostModel
 
 
 class AuthServiceInterface(ABC):
